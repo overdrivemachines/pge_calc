@@ -1,4 +1,5 @@
 require 'date'
+require_relative 'tenant'
 
 class Bill
   attr_accessor :start_date
@@ -6,7 +7,6 @@ class Bill
   attr_accessor :amount
 
   def initialize(start_date, end_date, amount)
-    
 
     @start_date = Date.strptime(start_date, "%m-%d-%y")
     @end_date = Date.strptime(end_date, "%m-%d-%y")
@@ -18,10 +18,20 @@ class Bill
   end
 
   def to_s
-    puts "#{@start_date.strftime('%m-%d-%y')} to #{@end_date.strftime('%m-%d-%y')}: $%.2f" % @amount
+    "#{@start_date.strftime('%m-%d-%y')} to #{@end_date.strftime('%m-%d-%y')}: $%.2f" % @amount
   end
-
 end
 
-b1 = Bill.new("1-2-2022", "1-31-2022", 32)
-puts b1.to_s
+bills = Array.new
+bills.push(Bill.new("1-2-2022", "1-31-2022", 320.55))
+bills.push(Bill.new("12-2-2022", "1-1-2022", 888.92))
+
+for bill in bills do
+  puts bill 
+end
+
+
+tenants = Array.new
+tenants.push(Tenant.new("Bill", "5-1-2019", "5-1-2025"))
+tenants.push(Tenant.new("Joe", "5-1-2019", "5-1-2025"))
+
